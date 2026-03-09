@@ -19,7 +19,7 @@
  */
 
 #include <algorithm>
-#include <cmath>
+
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
@@ -27,12 +27,11 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
-#include <numeric>
+
 #include <queue>
 #include <sstream>
 #include <string>
 #include <vector>
-
 
 // ──────────────────────────────────────────────
 // Utility: random double in [0,1)
@@ -564,11 +563,15 @@ static void printHistogram(const SimResults &res, std::ostream &out) {
   out << " " << std::string(55, '-') << "\n";
 
   int maxCount = 0;
-  for (auto &[w, cnt] : res.waitTimeHistogram)
-    if (cnt > maxCount)
-      maxCount = cnt;
+  for (auto it = res.waitTimeHistogram.begin();
+       it != res.waitTimeHistogram.end(); ++it)
+    if (it->second > maxCount)
+      maxCount = it->second;
 
-  for (auto &[w, cnt] : res.waitTimeHistogram) {
+  for (auto it = res.waitTimeHistogram.begin();
+       it != res.waitTimeHistogram.end(); ++it) {
+    int w = it->first;
+    int cnt = it->second;
     double freq = static_cast<double>(cnt) / res.customersServed;
     int barLen = (maxCount > 0) ? static_cast<int>(30.0 * cnt / maxCount) : 0;
     out << " " << std::setw(12) << w << std::setw(10) << cnt << std::setw(11)
