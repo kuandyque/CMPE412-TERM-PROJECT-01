@@ -83,11 +83,17 @@ struct Event {
 // Compare events for a min-heap (earliest first, SERVICE_COMPLETE before
 // ARRIVAL at same time)
 struct EventCmp {
+  // Overloading operator() allows priority_queue to use this struct as a custom comparator.
+  // If the time is exactly the same, we prioritize SERVICE_COMPLETE over ARRIVAL
+  // to ensure servers are freed BEFORE we try to assign any new arrivals in the same minute.
   bool operator()(const Event &a, const Event &b) const {
     if (a.time != b.time)
-      return a.time > b.time; // min-heap
-    // At the same time: SERVICE_COMPLETE has higher priority (value 1 > 0)
-    return static_cast<int>(a.type) > static_cast<int>(b.type);
+      return a.time > b.time; // min-heap: smaller time has higher priority
+    // std::priority_queue puts the "largest" element at the top. 
+    // We want SERVICE_COMPLETE (1) to be popped before ARRIVAL (0).
+    // Returning true means 'a' has lower priority than 'b'.
+    // So if 'a' is ARRIVAL (0) and 'b' is SERVICE_COMPLETE (1), 0 < 1 is true -> 'a' gets lower priority.
+    return static_cast<int>(a.type) < static_cast<int>(b.type);
   }
 };
 
@@ -197,10 +203,6 @@ static SimResults runSimulation(const SimParams &params,
     FEL.push(ev);
   }
 
-  // --- Pre-generate service times for every customer ---
-  for (int i = 0; i < params.totalCustomers; ++i) {
-    customers[i].serviceTime = sampleFromDistribution(params.serviceDist);
-  }
 
   // --- Log header ---
   logStream << "\n==========================================\n";
@@ -260,38 +262,6 @@ static SimResults runSimulation(const SimParams &params,
   logStream << "\n";
   logStream << " " << std::string(69 + params.numServers * 10, '-') << "\n";
 
-  // --- Helper lambdas ---
-  auto findFreeServer = [&]() -> int {
-    for (int i = 0; i < params.numServers; ++i)
-      if (!servers[i].busy)
-        return i;
-    return -1;
-  };
-
-  auto assignCustomerToServer = [&](int custIdx, int servIdx, int currentTime) {
-    Customer &c = customers[custIdx];
-    Server &s = servers[servIdx];
-
-    s.busy = true;
-    s.customerId = c.id;
-    int endTime = currentTime + c.serviceTime;
-    s.serviceEnd = endTime;
-
-    c.serviceStart = currentTime;
-    c.serviceEnd = endTime;
-    c.waitingTime = currentTime - c.arrivalTime;
-    c.systemTime = endTime - c.arrivalTime;
-    c.assignedServer = s.id;
-
-    // Schedule SERVICE_COMPLETE event
-    Event ev;
-    ev.time = endTime;
-    ev.type = EventType::SERVICE_COMPLETE;
-    ev.customerId = c.id;
-    ev.serverId = s.id;
-    FEL.push(ev);
-  };
-
   // --- Main simulation loop ---
   int lastTick = params.simDuration;
   if (!customers.empty())
@@ -329,12 +299,43 @@ static SimResults runSimulation(const SimParams &params,
 
     // ── Step (b): Assign waiting customers to free servers ──
     while (!waitingQueue.empty()) {
-      int freeIdx = findFreeServer();
+      int freeIdx = -1;
+      for (int i = 0; i < params.numServers; ++i) {
+        if (!servers[i].busy) {
+          freeIdx = i;
+          break;
+        }
+      }
       if (freeIdx < 0)
         break;
+
       int custId = waitingQueue.front();
       waitingQueue.pop();
-      assignCustomerToServer(custId - 1, freeIdx, clock);
+      int custIdx = custId - 1;
+
+      Customer &c = customers[custIdx];
+      Server &s = servers[freeIdx];
+
+      // CRITICAL REQUIREMENT: Generate service time only when physically assigned to a server
+      c.serviceTime = sampleFromDistribution(params.serviceDist);
+
+      s.busy = true;
+      s.customerId = c.id;
+      int endTime = clock + c.serviceTime;
+      s.serviceEnd = endTime;
+
+      c.serviceStart = clock;
+      c.serviceEnd = endTime;
+      c.waitingTime = clock - c.arrivalTime;
+      c.systemTime = endTime - c.arrivalTime;
+      c.assignedServer = s.id;
+
+      Event evComp;
+      evComp.time = endTime;
+      evComp.type = EventType::SERVICE_COMPLETE;
+      evComp.customerId = c.id;
+      evComp.serverId = s.id;
+      FEL.push(evComp);
 
       if (!tickEvents.empty())
         tickEvents += "; ";
@@ -350,9 +351,39 @@ static SimResults runSimulation(const SimParams &params,
         tickEvents += "; ";
       tickEvents += "C" + std::to_string(ev.customerId) + " arr";
 
-      int freeIdx = findFreeServer();
+      int freeIdx = -1;
+      for (int i = 0; i < params.numServers; ++i) {
+        if (!servers[i].busy) {
+          freeIdx = i;
+          break;
+        }
+      }
+
       if (freeIdx >= 0) {
-        assignCustomerToServer(custIdx, freeIdx, clock);
+        Customer &c = customers[custIdx];
+        Server &s = servers[freeIdx];
+
+        // CRITICAL REQUIREMENT: Generate service time only when physically assigned to a server
+        c.serviceTime = sampleFromDistribution(params.serviceDist);
+
+        s.busy = true;
+        s.customerId = c.id;
+        int endTime = clock + c.serviceTime;
+        s.serviceEnd = endTime;
+
+        c.serviceStart = clock;
+        c.serviceEnd = endTime;
+        c.waitingTime = clock - c.arrivalTime;
+        c.systemTime = endTime - c.arrivalTime;
+        c.assignedServer = s.id;
+
+        Event newEv;
+        newEv.time = endTime;
+        newEv.type = EventType::SERVICE_COMPLETE;
+        newEv.customerId = c.id;
+        newEv.serverId = s.id;
+        FEL.push(newEv);
+
         tickEvents += "->S" + std::to_string(servers[freeIdx].id);
       } else {
         waitingQueue.push(ev.customerId);
@@ -402,15 +433,16 @@ static SimResults runSimulation(const SimParams &params,
 
   for (auto &c : customers) {
     logStream << " " << std::setw(5) << c.id << std::setw(8)
-              << c.interArrivalTime << std::setw(10) << c.arrivalTime
-              << std::setw(10) << c.serviceTime;
+              << c.interArrivalTime << std::setw(10) << c.arrivalTime;
     if (c.serviceStart >= 0) {
-      logStream << std::setw(12) << c.serviceStart << std::setw(10)
+      logStream << std::setw(10) << c.serviceTime
+                << std::setw(12) << c.serviceStart << std::setw(10)
                 << c.waitingTime << std::setw(10) << c.serviceEnd
                 << std::setw(12) << c.systemTime << std::setw(10)
                 << ("S" + std::to_string(c.assignedServer));
     } else {
-      logStream << std::setw(12) << "N/A" << std::setw(10) << "N/A"
+      logStream << std::setw(10) << "N/A"
+                << std::setw(12) << "N/A" << std::setw(10) << "N/A"
                 << std::setw(10) << "N/A" << std::setw(12) << "N/A"
                 << std::setw(10) << "N/A";
     }
