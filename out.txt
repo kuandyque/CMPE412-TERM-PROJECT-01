@@ -1,0 +1,399 @@
+================================================================
+  CMPE 412 - Multi-Server Queue Simulation                      
+  Kuandyk Kyrykbayev, Akhmed Nazarov                            
+================================================================
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: Baseline
+======================================================
+1. Average waiting time per customer         : 0.0000 minutes
+2. Probability that a customer waits         : 0.0000
+3. Probability of idle server (overall)      : 0.6667
+4. Average service time                      : 2.5000 minutes
+5. Average time between arrivals             : 3.7100 minutes
+6. Average waiting time of those who wait    : 0.0000 minutes
+7. Average time customer spends in the system: 2.5000 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: Baseline
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 2
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.00 min
+ 2. P(wait)                      : 0.00 %
+ 3. P(idle server):                
+      Server 1                   : 42.13 %
+      Server 2                   : 91.20 %
+      Overall                    : 66.67 %
+ 4. Avg service time             : 2.50 min
+ 5. Avg time between arrivals    : 3.71 min
+ 6. Avg wait (of those who wait) : 0.00 min
+ 7. Avg time in system           : 2.50 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.00
+   Max queue length              : 0
+   Server 1 utilisation         : 57.87 %
+   Server 2 utilisation         : 8.80 %
+   Overall utilisation           : 33.33 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (Baseline):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0       100     100.00%   ##############################
+
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: Fast Arrival
+======================================================
+1. Average waiting time per customer         : 0.2900 minutes
+2. Probability that a customer waits         : 0.2100
+3. Probability of idle server (overall)      : 0.3325
+4. Average service time                      : 2.6300 minutes
+5. Average time between arrivals             : 1.9600 minutes
+6. Average waiting time of those who wait    : 1.3810 minutes
+7. Average time customer spends in the system: 2.9200 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: Fast Arrival
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 2
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.29 min
+ 2. P(wait)                      : 21.00 %
+ 3. P(idle server):                
+      Server 1                   : 16.24 %
+      Server 2                   : 50.25 %
+      Overall                    : 33.25 %
+ 4. Avg service time             : 2.63 min
+ 5. Avg time between arrivals    : 1.96 min
+ 6. Avg wait (of those who wait) : 1.38 min
+ 7. Avg time in system           : 2.92 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.15
+   Max queue length              : 3
+   Server 1 utilisation         : 83.76 %
+   Server 2 utilisation         : 49.75 %
+   Overall utilisation           : 66.75 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (Fast Arrival):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0        79      79.00%   ##############################
+            1        14      14.00%   #####
+            2         6       6.00%   ##
+            3         1       1.00%   
+
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: Slow Arrival
+======================================================
+1. Average waiting time per customer         : 0.0000 minutes
+2. Probability that a customer waits         : 0.0000
+3. Probability of idle server (overall)      : 0.7735
+4. Average service time                      : 2.7000 minutes
+5. Average time between arrivals             : 5.9200 minutes
+6. Average waiting time of those who wait    : 0.0000 minutes
+7. Average time customer spends in the system: 2.7000 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: Slow Arrival
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 2
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.00 min
+ 2. P(wait)                      : 0.00 %
+ 3. P(idle server):                
+      Server 1                   : 54.70 %
+      Server 2                   : 100.00 %
+      Overall                    : 77.35 %
+ 4. Avg service time             : 2.70 min
+ 5. Avg time between arrivals    : 5.92 min
+ 6. Avg wait (of those who wait) : 0.00 min
+ 7. Avg time in system           : 2.70 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.00
+   Max queue length              : 0
+   Server 1 utilisation         : 45.30 %
+   Server 2 utilisation         : 0.00 %
+   Overall utilisation           : 22.65 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (Slow Arrival):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0       100     100.00%   ##############################
+
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: Fast Service
+======================================================
+1. Average waiting time per customer         : 0.0000 minutes
+2. Probability that a customer waits         : 0.0000
+3. Probability of idle server (overall)      : 0.7507
+4. Average service time                      : 1.8200 minutes
+5. Average time between arrivals             : 3.6300 minutes
+6. Average waiting time of those who wait    : 0.0000 minutes
+7. Average time customer spends in the system: 1.8200 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: Fast Service
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 2
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.00 min
+ 2. P(wait)                      : 0.00 %
+ 3. P(idle server):                
+      Server 1                   : 52.33 %
+      Server 2                   : 97.81 %
+      Overall                    : 75.07 %
+ 4. Avg service time             : 1.82 min
+ 5. Avg time between arrivals    : 3.63 min
+ 6. Avg wait (of those who wait) : 0.00 min
+ 7. Avg time in system           : 1.82 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.00
+   Max queue length              : 0
+   Server 1 utilisation         : 47.67 %
+   Server 2 utilisation         : 2.19 %
+   Overall utilisation           : 24.93 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (Fast Service):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0       100     100.00%   ##############################
+
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: Slow Service
+======================================================
+1. Average waiting time per customer         : 0.1500 minutes
+2. Probability that a customer waits         : 0.1300
+3. Probability of idle server (overall)      : 0.3070
+4. Average service time                      : 4.9200 minutes
+5. Average time between arrivals             : 3.5000 minutes
+6. Average waiting time of those who wait    : 1.1538 minutes
+7. Average time customer spends in the system: 5.0700 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: Slow Service
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 2
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.15 min
+ 2. P(wait)                      : 13.00 %
+ 3. P(idle server):                
+      Server 1                   : 19.15 %
+      Server 2                   : 42.25 %
+      Overall                    : 30.70 %
+ 4. Avg service time             : 4.92 min
+ 5. Avg time between arrivals    : 3.50 min
+ 6. Avg wait (of those who wait) : 1.15 min
+ 7. Avg time in system           : 5.07 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.04
+   Max queue length              : 2
+   Server 1 utilisation         : 80.85 %
+   Server 2 utilisation         : 57.75 %
+   Overall utilisation           : 69.30 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (Slow Service):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0        87      87.00%   ##############################
+            1        12      12.00%   ####
+            3         1       1.00%   
+
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: 1 Server
+======================================================
+1. Average waiting time per customer         : 0.3900 minutes
+2. Probability that a customer waits         : 0.2700
+3. Probability of idle server (overall)      : 0.2528
+4. Average service time                      : 2.6300 minutes
+5. Average time between arrivals             : 3.4800 minutes
+6. Average waiting time of those who wait    : 1.4444 minutes
+7. Average time customer spends in the system: 3.0200 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: 1 Server
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 1
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.39 min
+ 2. P(wait)                      : 27.00 %
+ 3. P(idle server):                
+      Server 1                   : 25.28 %
+      Overall                    : 25.28 %
+ 4. Avg service time             : 2.63 min
+ 5. Avg time between arrivals    : 3.48 min
+ 6. Avg wait (of those who wait) : 1.44 min
+ 7. Avg time in system           : 3.02 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.11
+   Max queue length              : 1
+   Server 1 utilisation         : 74.72 %
+   Overall utilisation           : 74.72 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (1 Server):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0        73      73.00%   ##############################
+            1        18      18.00%   #######
+            2         7       7.00%   ##
+            3         1       1.00%   
+            4         1       1.00%   
+
+
+======================================================
+   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
+   Scenario: 4 Servers
+======================================================
+1. Average waiting time per customer         : 0.0000 minutes
+2. Probability that a customer waits         : 0.0000
+3. Probability of idle server (overall)      : 0.8210
+4. Average service time                      : 2.7000 minutes
+5. Average time between arrivals             : 3.7500 minutes
+6. Average waiting time of those who wait    : 0.0000 minutes
+7. Average time customer spends in the system: 2.7000 minutes
+======================================================
+Detailed tick-by-tick log has been saved to: simulation_log.txt
+
+─────────────────────────────────────────────────
+ KPI Summary: 4 Servers
+─────────────────────────────────────────────────
+ Total customers generated       : 100
+ Customers served                : 100
+ Number of servers               : 4
+─────────────────────────────────────────────────
+ 1. Avg waiting time / customer  : 0.00 min
+ 2. P(wait)                      : 0.00 %
+ 3. P(idle server):                
+      Server 1                   : 37.93 %
+      Server 2                   : 90.45 %
+      Server 3                   : 100.00 %
+      Server 4                   : 100.00 %
+      Overall                    : 82.10 %
+ 4. Avg service time             : 2.70 min
+ 5. Avg time between arrivals    : 3.75 min
+ 6. Avg wait (of those who wait) : 0.00 min
+ 7. Avg time in system           : 2.70 min
+─────────────────────────────────────────────────
+ Additional:
+   Avg queue length              : 0.00
+   Max queue length              : 0
+   Server 1 utilisation         : 62.07 %
+   Server 2 utilisation         : 9.55 %
+   Server 3 utilisation         : 0.00 %
+   Server 4 utilisation         : 0.00 %
+   Overall utilisation           : 17.90 %
+─────────────────────────────────────────────────
+
+ WAITING TIME HISTOGRAM (4 Servers):
+    Wait(min)     Count   Frequency   Bar
+ -------------------------------------------------------
+            0       100     100.00%   ##############################
+
+
+=====================================================================
+                   EVALUATION COMPARISON TABLE                        
+=====================================================================
+
+ KPI                                    Baseline    Fast Arrival    Slow Arrival    Fast Service    Slow Service        1 Server       4 Servers
+ -----------------------------------------------------------------------------------------------------------------------------------------------
+ Servers                                       2               2               2               2               2               1               4
+ Customers                                   100             100             100             100             100             100             100
+ 1. Avg wait time (min)                     0.00            0.29            0.00            0.00            0.15            0.39            0.00
+ 2. P(wait)                                 0.0%           21.0%            0.0%            0.0%           13.0%           27.0%            0.0%
+ 3. P(idle) overall                        66.7%           33.2%           77.3%           75.1%           30.7%           25.3%           82.1%
+ 4. Avg service (min)                       2.50            2.63            2.70            1.82            4.92            2.63            2.70
+ 5. Avg inter-arrival                       3.71            1.96            5.92            3.63            3.50            3.48            3.75
+ 6. Avg wait (waiters)                      0.00            1.38            0.00            0.00            1.15            1.44            0.00
+ 7. Avg system time                         2.50            2.92            2.70            1.82            5.07            3.02            2.70
+ Avg queue length                           0.00            0.15            0.00            0.00            0.04            0.11            0.00
+ Max queue length                              0               3               0               0               2               1               0
+ Overall utilisation                       33.3%           66.8%           22.7%           24.9%           69.3%           74.7%           17.9%
+
+
+================================================================
+                   EVALUATION COMMENTARY
+================================================================
+
+ Q2: Effect of changing inter-arrival times
+ -------------------------------------------
+ - FASTER arrivals (lower avg inter-arrival time): More customers
+   arrive per unit time. Servers become saturated faster, leading
+   to longer queues, higher waiting times, higher P(wait), and
+   higher server utilisation. P(idle) decreases.
+
+ - SLOWER arrivals (higher avg inter-arrival time): Fewer customers
+   per unit time. Servers remain idle more often, resulting in
+   shorter/no queues, lower waiting times, lower P(wait), and
+   lower server utilisation. P(idle) increases.
+
+ Q3: Effect of changing service times
+ --------------------------------------
+ - FASTER service (lower avg service time): Each customer occupies
+   a server for less time. Servers free up more quickly, leading
+   to shorter queues, lower waiting times, and lower server
+   utilisation. P(idle) increases.
+
+ - SLOWER service (higher avg service time): Each customer keeps
+   the server busy longer. This leads to longer queues, higher
+   waiting times, higher P(wait), and higher server utilisation.
+   P(idle) decreases.
+
+ Q4: Effect of changing the number of servers
+ ----------------------------------------------
+ - FEWER servers: Less capacity to handle concurrent customers.
+   Queues build up faster, resulting in higher waiting times,
+   higher P(wait), and higher per-server utilisation.
+
+ - MORE servers: More capacity available. Queues rarely form,
+   resulting in lower/zero waiting times, lower P(wait), and
+   lower per-server utilisation (each server is idle more often).
+
+ The comparison table above demonstrates these effects
+ quantitatively.
+

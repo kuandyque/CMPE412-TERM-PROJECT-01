@@ -93,7 +93,11 @@ struct EventCmp {
     // We want SERVICE_COMPLETE (1) to be popped before ARRIVAL (0).
     // Returning true means 'a' has lower priority than 'b'.
     // So if 'a' is ARRIVAL (0) and 'b' is SERVICE_COMPLETE (1), 0 < 1 is true -> 'a' gets lower priority.
-    return static_cast<int>(a.type) < static_cast<int>(b.type);
+    if (a.type != b.type)
+      return static_cast<int>(a.type) < static_cast<int>(b.type);
+    // If time and type are the same, process smaller customer ID first
+    // to guarantee deterministic event ordering in the detailed log.
+    return a.customerId > b.customerId;
   }
 };
 
@@ -263,9 +267,12 @@ static SimResults runSimulation(const SimParams &params,
   logStream << " " << std::string(69 + params.numServers * 10, '-') << "\n";
 
   // --- Main simulation loop ---
-  int lastTick = params.simDuration;
+  // We run until the last customer is fully served.
+  // Instead of mixing simDuration with customer count, we compute the upper
+  // bound from the last customer's arrival plus a generous buffer for service.
+  int lastTick = 0;
   if (!customers.empty())
-    lastTick = std::max(lastTick, customers.back().arrivalTime + 100);
+    lastTick = customers.back().arrivalTime + 100;
 
   for (int clock = 1; clock <= lastTick; ++clock) {
 
@@ -906,8 +913,7 @@ int main() {
   }
 
   // ─── Commentary ───
-  {
-    std::string commentary = R"(
+  std::string commentary = R"(
 ================================================================
                    EVALUATION COMMENTARY
 ================================================================
@@ -950,11 +956,56 @@ int main() {
  quantitatively.
 
 )";
-    dual(commentary);
-  }
+  dual(commentary);
 
   logFile.close();
+
+  // ═══════════════════════════════════════════════════════════
+  // Generate out.txt — crucial information only (no tick-by-tick)
+  // ═══════════════════════════════════════════════════════════
+  std::ofstream outFile("out.txt");
+  if (!outFile.is_open()) {
+    std::cerr << "Error: cannot open out.txt for writing.\n";
+    return 1;
+  }
+
+  outFile << "================================================================\n";
+  outFile << "  CMPE 412 - Multi-Server Queue Simulation                      \n";
+  outFile << "  Kuandyk Kyrykbayev, Akhmed Nazarov                            \n";
+  outFile << "================================================================\n";
+
+  // Write KPI summary + histogram for each scenario
+  for (size_t i = 0; i < allResults.size(); ++i) {
+    outFile << "\n======================================================\n";
+    outFile << "   MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   \n";
+    outFile << "   Scenario: " << allResults[i].label << "\n";
+    outFile << "======================================================\n";
+    outFile << std::fixed << std::setprecision(4);
+    outFile << "1. Average waiting time per customer         : " << allResults[i].avgWaitingTime    << " minutes\n";
+    outFile << "2. Probability that a customer waits         : " << allResults[i].probWait          << "\n";
+    outFile << "3. Probability of idle server (overall)      : " << allResults[i].overallIdleProb   << "\n";
+    outFile << "4. Average service time                      : " << allResults[i].avgServiceTime    << " minutes\n";
+    outFile << "5. Average time between arrivals             : " << allResults[i].avgInterArrival   << " minutes\n";
+    outFile << "6. Average waiting time of those who wait    : " << allResults[i].avgWaitOfThoseWhoWait << " minutes\n";
+    outFile << "7. Average time customer spends in the system: " << allResults[i].avgSystemTime     << " minutes\n";
+    outFile << "======================================================\n";
+    outFile << "Detailed tick-by-tick log has been saved to: simulation_log.txt\n";
+
+    // Detailed KPI block
+    printResults(allResults[i], outFile);
+    printHistogram(allResults[i], outFile);
+  }
+
+  // Comparison table
+  printComparisonTable(allResults, outFile);
+
+  // Commentary
+  outFile << commentary;
+
+  outFile.close();
+
   dual("Detailed log saved to: simulation_log.txt\n");
+  dual("Summary results saved to: out.txt\n");
   dual("Simulation complete.\n");
 
   return 0;
