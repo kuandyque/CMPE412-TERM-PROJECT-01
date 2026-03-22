@@ -133,7 +133,6 @@ struct Customer {
 struct SimParams {
   std::string label;
   int numServers;
-  int simDuration;    // total minutes
   int totalCustomers; // how many arrivals to generate
   std::vector<ProbEntry> interArrivalDist;
   std::vector<ProbEntry> serviceDist;
@@ -212,8 +211,7 @@ static SimResults runSimulation(const SimParams &params,
   logStream << "\n==========================================\n";
   logStream << " SCENARIO: " << params.label << "\n";
   logStream << " Servers: " << params.numServers
-            << "  |  Customers: " << params.totalCustomers
-            << "  |  Duration: " << params.simDuration << " min\n";
+            << "  |  Customers: " << params.totalCustomers << "\n";
   logStream << " Avg inter-arrival (dist): " << std::fixed
             << std::setprecision(2) << distributionMean(params.interArrivalDist)
             << " min"
@@ -351,6 +349,9 @@ static SimResults runSimulation(const SimParams &params,
     }
 
     // ── Step (c): Process ARRIVAL events ──
+    // Per spec step 3c: only try to assign a server if no customers
+    // are already waiting in the queue. If the queue is not empty,
+    // newcomers go directly to the back of the queue (FIFO fairness).
     for (auto &ev : arrivals) {
       int custIdx = ev.customerId - 1;
 
@@ -358,41 +359,49 @@ static SimResults runSimulation(const SimParams &params,
         tickEvents += "; ";
       tickEvents += "C" + std::to_string(ev.customerId) + " arr";
 
-      int freeIdx = -1;
-      for (int i = 0; i < params.numServers; ++i) {
-        if (!servers[i].busy) {
-          freeIdx = i;
-          break;
+      if (waitingQueue.empty()) {
+        // No one is waiting — check for a free server
+        int freeIdx = -1;
+        for (int i = 0; i < params.numServers; ++i) {
+          if (!servers[i].busy) {
+            freeIdx = i;
+            break;
+          }
         }
-      }
 
-      if (freeIdx >= 0) {
-        Customer &c = customers[custIdx];
-        Server &s = servers[freeIdx];
+        if (freeIdx >= 0) {
+          Customer &c = customers[custIdx];
+          Server &s = servers[freeIdx];
 
-        // CRITICAL REQUIREMENT: Generate service time only when physically assigned to a server
-        c.serviceTime = sampleFromDistribution(params.serviceDist);
+          // CRITICAL REQUIREMENT: Generate service time only when physically assigned to a server
+          c.serviceTime = sampleFromDistribution(params.serviceDist);
 
-        s.busy = true;
-        s.customerId = c.id;
-        int endTime = clock + c.serviceTime;
-        s.serviceEnd = endTime;
+          s.busy = true;
+          s.customerId = c.id;
+          int endTime = clock + c.serviceTime;
+          s.serviceEnd = endTime;
 
-        c.serviceStart = clock;
-        c.serviceEnd = endTime;
-        c.waitingTime = clock - c.arrivalTime;
-        c.systemTime = endTime - c.arrivalTime;
-        c.assignedServer = s.id;
+          c.serviceStart = clock;
+          c.serviceEnd = endTime;
+          c.waitingTime = clock - c.arrivalTime;
+          c.systemTime = endTime - c.arrivalTime;
+          c.assignedServer = s.id;
 
-        Event newEv;
-        newEv.time = endTime;
-        newEv.type = EventType::SERVICE_COMPLETE;
-        newEv.customerId = c.id;
-        newEv.serverId = s.id;
-        FEL.push(newEv);
+          Event newEv;
+          newEv.time = endTime;
+          newEv.type = EventType::SERVICE_COMPLETE;
+          newEv.customerId = c.id;
+          newEv.serverId = s.id;
+          FEL.push(newEv);
 
-        tickEvents += "->S" + std::to_string(servers[freeIdx].id);
+          tickEvents += "->S" + std::to_string(servers[freeIdx].id);
+        } else {
+          // All servers busy — customer joins the queue
+          waitingQueue.push(ev.customerId);
+          tickEvents += "->Q(" + std::to_string((int)waitingQueue.size()) + ")";
+        }
       } else {
+        // Queue is not empty — newcomer goes directly to the back
         waitingQueue.push(ev.customerId);
         tickEvents += "->Q(" + std::to_string((int)waitingQueue.size()) + ")";
       }
@@ -719,7 +728,6 @@ int main() {
 
   const int DEFAULT_SERVERS = 2;     // 2 servers as in LAB-PS-02
   const int DEFAULT_CUSTOMERS = 100; // 100 customers as in LAB-PS
-  const int DEFAULT_DURATION = 500;
 
   // Collect results for comparison
   std::vector<SimResults> allResults;
@@ -731,7 +739,6 @@ int main() {
     SimParams p;
     p.label = "Baseline";
     p.numServers = DEFAULT_SERVERS;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = defaultInterArrival;
     p.serviceDist = defaultService;
@@ -759,7 +766,6 @@ int main() {
     SimParams p;
     p.label = "Fast Arrival";
     p.numServers = DEFAULT_SERVERS;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = fasterArrival;
     p.serviceDist = defaultService;
@@ -786,7 +792,6 @@ int main() {
     SimParams p;
     p.label = "Slow Arrival";
     p.numServers = DEFAULT_SERVERS;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = slowerArrival;
     p.serviceDist = defaultService;
@@ -813,7 +818,6 @@ int main() {
     SimParams p;
     p.label = "Fast Service";
     p.numServers = DEFAULT_SERVERS;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = defaultInterArrival;
     p.serviceDist = fasterService;
@@ -840,7 +844,6 @@ int main() {
     SimParams p;
     p.label = "Slow Service";
     p.numServers = DEFAULT_SERVERS;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = defaultInterArrival;
     p.serviceDist = slowerService;
@@ -864,7 +867,6 @@ int main() {
     SimParams p;
     p.label = "1 Server";
     p.numServers = 1;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = defaultInterArrival;
     p.serviceDist = defaultService;
@@ -888,7 +890,6 @@ int main() {
     SimParams p;
     p.label = "4 Servers";
     p.numServers = 4;
-    p.simDuration = DEFAULT_DURATION;
     p.totalCustomers = DEFAULT_CUSTOMERS;
     p.interArrivalDist = defaultInterArrival;
     p.serviceDist = defaultService;

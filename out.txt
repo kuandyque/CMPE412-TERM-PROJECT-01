@@ -9,11 +9,11 @@
 ======================================================
 1. Average waiting time per customer         : 0.0000 minutes
 2. Probability that a customer waits         : 0.0000
-3. Probability of idle server (overall)      : 0.6667
-4. Average service time                      : 2.5000 minutes
-5. Average time between arrivals             : 3.7100 minutes
+3. Probability of idle server (overall)      : 0.6321
+4. Average service time                      : 2.7300 minutes
+5. Average time between arrivals             : 3.6800 minutes
 6. Average waiting time of those who wait    : 0.0000 minutes
-7. Average time customer spends in the system: 2.5000 minutes
+7. Average time customer spends in the system: 2.7300 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -27,20 +27,20 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  1. Avg waiting time / customer  : 0.00 min
  2. P(wait)                      : 0.00 %
  3. P(idle server):                
-      Server 1                   : 42.13 %
-      Server 2                   : 91.20 %
-      Overall                    : 66.67 %
- 4. Avg service time             : 2.50 min
- 5. Avg time between arrivals    : 3.71 min
+      Server 1                   : 39.89 %
+      Server 2                   : 86.52 %
+      Overall                    : 63.21 %
+ 4. Avg service time             : 2.73 min
+ 5. Avg time between arrivals    : 3.68 min
  6. Avg wait (of those who wait) : 0.00 min
- 7. Avg time in system           : 2.50 min
+ 7. Avg time in system           : 2.73 min
 ─────────────────────────────────────────────────
  Additional:
    Avg queue length              : 0.00
    Max queue length              : 0
-   Server 1 utilisation         : 57.87 %
-   Server 2 utilisation         : 8.80 %
-   Overall utilisation           : 33.33 %
+   Server 1 utilisation         : 60.11 %
+   Server 2 utilisation         : 13.48 %
+   Overall utilisation           : 36.79 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (Baseline):
@@ -53,13 +53,13 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
    MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
    Scenario: Fast Arrival
 ======================================================
-1. Average waiting time per customer         : 0.2900 minutes
-2. Probability that a customer waits         : 0.2100
-3. Probability of idle server (overall)      : 0.3325
-4. Average service time                      : 2.6300 minutes
-5. Average time between arrivals             : 1.9600 minutes
-6. Average waiting time of those who wait    : 1.3810 minutes
-7. Average time customer spends in the system: 2.9200 minutes
+1. Average waiting time per customer         : 0.0900 minutes
+2. Probability that a customer waits         : 0.0800
+3. Probability of idle server (overall)      : 0.4292
+4. Average service time                      : 2.4200 minutes
+5. Average time between arrivals             : 2.1000 minutes
+6. Average waiting time of those who wait    : 1.1250 minutes
+7. Average time customer spends in the system: 2.5100 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -70,32 +70,31 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  Customers served                : 100
  Number of servers               : 2
 ─────────────────────────────────────────────────
- 1. Avg waiting time / customer  : 0.29 min
- 2. P(wait)                      : 21.00 %
+ 1. Avg waiting time / customer  : 0.09 min
+ 2. P(wait)                      : 8.00 %
  3. P(idle server):                
-      Server 1                   : 16.24 %
-      Server 2                   : 50.25 %
-      Overall                    : 33.25 %
- 4. Avg service time             : 2.63 min
- 5. Avg time between arrivals    : 1.96 min
- 6. Avg wait (of those who wait) : 1.38 min
- 7. Avg time in system           : 2.92 min
+      Server 1                   : 21.70 %
+      Server 2                   : 64.15 %
+      Overall                    : 42.92 %
+ 4. Avg service time             : 2.42 min
+ 5. Avg time between arrivals    : 2.10 min
+ 6. Avg wait (of those who wait) : 1.12 min
+ 7. Avg time in system           : 2.51 min
 ─────────────────────────────────────────────────
  Additional:
-   Avg queue length              : 0.15
-   Max queue length              : 3
-   Server 1 utilisation         : 83.76 %
-   Server 2 utilisation         : 49.75 %
-   Overall utilisation           : 66.75 %
+   Avg queue length              : 0.04
+   Max queue length              : 2
+   Server 1 utilisation         : 78.30 %
+   Server 2 utilisation         : 35.85 %
+   Overall utilisation           : 57.08 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (Fast Arrival):
     Wait(min)     Count   Frequency   Bar
  -------------------------------------------------------
-            0        79      79.00%   ##############################
-            1        14      14.00%   #####
-            2         6       6.00%   ##
-            3         1       1.00%   
+            0        92      92.00%   ##############################
+            1         7       7.00%   ##
+            2         1       1.00%   
 
 
 ======================================================
@@ -104,11 +103,11 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
 ======================================================
 1. Average waiting time per customer         : 0.0000 minutes
 2. Probability that a customer waits         : 0.0000
-3. Probability of idle server (overall)      : 0.7735
-4. Average service time                      : 2.7000 minutes
-5. Average time between arrivals             : 5.9200 minutes
+3. Probability of idle server (overall)      : 0.7909
+4. Average service time                      : 2.4800 minutes
+5. Average time between arrivals             : 5.8900 minutes
 6. Average waiting time of those who wait    : 0.0000 minutes
-7. Average time customer spends in the system: 2.7000 minutes
+7. Average time customer spends in the system: 2.4800 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -122,20 +121,20 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  1. Avg waiting time / customer  : 0.00 min
  2. P(wait)                      : 0.00 %
  3. P(idle server):                
-      Server 1                   : 54.70 %
+      Server 1                   : 58.18 %
       Server 2                   : 100.00 %
-      Overall                    : 77.35 %
- 4. Avg service time             : 2.70 min
- 5. Avg time between arrivals    : 5.92 min
+      Overall                    : 79.09 %
+ 4. Avg service time             : 2.48 min
+ 5. Avg time between arrivals    : 5.89 min
  6. Avg wait (of those who wait) : 0.00 min
- 7. Avg time in system           : 2.70 min
+ 7. Avg time in system           : 2.48 min
 ─────────────────────────────────────────────────
  Additional:
    Avg queue length              : 0.00
    Max queue length              : 0
-   Server 1 utilisation         : 45.30 %
+   Server 1 utilisation         : 41.82 %
    Server 2 utilisation         : 0.00 %
-   Overall utilisation           : 22.65 %
+   Overall utilisation           : 20.91 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (Slow Arrival):
@@ -150,11 +149,11 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
 ======================================================
 1. Average waiting time per customer         : 0.0000 minutes
 2. Probability that a customer waits         : 0.0000
-3. Probability of idle server (overall)      : 0.7507
-4. Average service time                      : 1.8200 minutes
-5. Average time between arrivals             : 3.6300 minutes
+3. Probability of idle server (overall)      : 0.7733
+4. Average service time                      : 1.7500 minutes
+5. Average time between arrivals             : 3.8400 minutes
 6. Average waiting time of those who wait    : 0.0000 minutes
-7. Average time customer spends in the system: 1.8200 minutes
+7. Average time customer spends in the system: 1.7500 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -168,20 +167,20 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  1. Avg waiting time / customer  : 0.00 min
  2. P(wait)                      : 0.00 %
  3. P(idle server):                
-      Server 1                   : 52.33 %
-      Server 2                   : 97.81 %
-      Overall                    : 75.07 %
- 4. Avg service time             : 1.82 min
- 5. Avg time between arrivals    : 3.63 min
+      Server 1                   : 56.99 %
+      Server 2                   : 97.67 %
+      Overall                    : 77.33 %
+ 4. Avg service time             : 1.75 min
+ 5. Avg time between arrivals    : 3.84 min
  6. Avg wait (of those who wait) : 0.00 min
- 7. Avg time in system           : 1.82 min
+ 7. Avg time in system           : 1.75 min
 ─────────────────────────────────────────────────
  Additional:
    Avg queue length              : 0.00
    Max queue length              : 0
-   Server 1 utilisation         : 47.67 %
-   Server 2 utilisation         : 2.19 %
-   Overall utilisation           : 24.93 %
+   Server 1 utilisation         : 43.01 %
+   Server 2 utilisation         : 2.33 %
+   Overall utilisation           : 22.67 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (Fast Service):
@@ -194,13 +193,13 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
    MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
    Scenario: Slow Service
 ======================================================
-1. Average waiting time per customer         : 0.1500 minutes
-2. Probability that a customer waits         : 0.1300
-3. Probability of idle server (overall)      : 0.3070
+1. Average waiting time per customer         : 0.1000 minutes
+2. Probability that a customer waits         : 0.0800
+3. Probability of idle server (overall)      : 0.3526
 4. Average service time                      : 4.9200 minutes
-5. Average time between arrivals             : 3.5000 minutes
-6. Average waiting time of those who wait    : 1.1538 minutes
-7. Average time customer spends in the system: 5.0700 minutes
+5. Average time between arrivals             : 3.7400 minutes
+6. Average waiting time of those who wait    : 1.2500 minutes
+7. Average time customer spends in the system: 5.0200 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -211,44 +210,44 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  Customers served                : 100
  Number of servers               : 2
 ─────────────────────────────────────────────────
- 1. Avg waiting time / customer  : 0.15 min
- 2. P(wait)                      : 13.00 %
+ 1. Avg waiting time / customer  : 0.10 min
+ 2. P(wait)                      : 8.00 %
  3. P(idle server):                
-      Server 1                   : 19.15 %
-      Server 2                   : 42.25 %
-      Overall                    : 30.70 %
+      Server 1                   : 17.11 %
+      Server 2                   : 53.42 %
+      Overall                    : 35.26 %
  4. Avg service time             : 4.92 min
- 5. Avg time between arrivals    : 3.50 min
- 6. Avg wait (of those who wait) : 1.15 min
- 7. Avg time in system           : 5.07 min
+ 5. Avg time between arrivals    : 3.74 min
+ 6. Avg wait (of those who wait) : 1.25 min
+ 7. Avg time in system           : 5.02 min
 ─────────────────────────────────────────────────
  Additional:
-   Avg queue length              : 0.04
-   Max queue length              : 2
-   Server 1 utilisation         : 80.85 %
-   Server 2 utilisation         : 57.75 %
-   Overall utilisation           : 69.30 %
+   Avg queue length              : 0.03
+   Max queue length              : 1
+   Server 1 utilisation         : 82.89 %
+   Server 2 utilisation         : 46.58 %
+   Overall utilisation           : 64.74 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (Slow Service):
     Wait(min)     Count   Frequency   Bar
  -------------------------------------------------------
-            0        87      87.00%   ##############################
-            1        12      12.00%   ####
-            3         1       1.00%   
+            0        92      92.00%   ##############################
+            1         6       6.00%   #
+            2         2       2.00%   
 
 
 ======================================================
    MULTI-SERVER QUEUE SIMULATION RESULTS (CMPE 412)   
    Scenario: 1 Server
 ======================================================
-1. Average waiting time per customer         : 0.3900 minutes
-2. Probability that a customer waits         : 0.2700
-3. Probability of idle server (overall)      : 0.2528
-4. Average service time                      : 2.6300 minutes
-5. Average time between arrivals             : 3.4800 minutes
-6. Average waiting time of those who wait    : 1.4444 minutes
-7. Average time customer spends in the system: 3.0200 minutes
+1. Average waiting time per customer         : 0.3800 minutes
+2. Probability that a customer waits         : 0.2800
+3. Probability of idle server (overall)      : 0.3056
+4. Average service time                      : 2.5000 minutes
+5. Average time between arrivals             : 3.5700 minutes
+6. Average waiting time of those who wait    : 1.3571 minutes
+7. Average time customer spends in the system: 2.8800 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -259,30 +258,30 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  Customers served                : 100
  Number of servers               : 1
 ─────────────────────────────────────────────────
- 1. Avg waiting time / customer  : 0.39 min
- 2. P(wait)                      : 27.00 %
+ 1. Avg waiting time / customer  : 0.38 min
+ 2. P(wait)                      : 28.00 %
  3. P(idle server):                
-      Server 1                   : 25.28 %
-      Overall                    : 25.28 %
- 4. Avg service time             : 2.63 min
- 5. Avg time between arrivals    : 3.48 min
- 6. Avg wait (of those who wait) : 1.44 min
- 7. Avg time in system           : 3.02 min
+      Server 1                   : 30.56 %
+      Overall                    : 30.56 %
+ 4. Avg service time             : 2.50 min
+ 5. Avg time between arrivals    : 3.57 min
+ 6. Avg wait (of those who wait) : 1.36 min
+ 7. Avg time in system           : 2.88 min
 ─────────────────────────────────────────────────
  Additional:
    Avg queue length              : 0.11
-   Max queue length              : 1
-   Server 1 utilisation         : 74.72 %
-   Overall utilisation           : 74.72 %
+   Max queue length              : 2
+   Server 1 utilisation         : 69.44 %
+   Overall utilisation           : 69.44 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (1 Server):
     Wait(min)     Count   Frequency   Bar
  -------------------------------------------------------
-            0        73      73.00%   ##############################
-            1        18      18.00%   #######
-            2         7       7.00%   ##
-            3         1       1.00%   
+            0        72      72.00%   ##############################
+            1        22      22.00%   #########
+            2         3       3.00%   #
+            3         2       2.00%   
             4         1       1.00%   
 
 
@@ -292,11 +291,11 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
 ======================================================
 1. Average waiting time per customer         : 0.0000 minutes
 2. Probability that a customer waits         : 0.0000
-3. Probability of idle server (overall)      : 0.8210
-4. Average service time                      : 2.7000 minutes
-5. Average time between arrivals             : 3.7500 minutes
+3. Probability of idle server (overall)      : 0.8243
+4. Average service time                      : 2.6000 minutes
+5. Average time between arrivals             : 3.6800 minutes
 6. Average waiting time of those who wait    : 0.0000 minutes
-7. Average time customer spends in the system: 2.7000 minutes
+7. Average time customer spends in the system: 2.6000 minutes
 ======================================================
 Detailed tick-by-tick log has been saved to: simulation_log.txt
 
@@ -310,24 +309,24 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  1. Avg waiting time / customer  : 0.00 min
  2. P(wait)                      : 0.00 %
  3. P(idle server):                
-      Server 1                   : 37.93 %
-      Server 2                   : 90.45 %
+      Server 1                   : 38.38 %
+      Server 2                   : 91.35 %
       Server 3                   : 100.00 %
       Server 4                   : 100.00 %
-      Overall                    : 82.10 %
- 4. Avg service time             : 2.70 min
- 5. Avg time between arrivals    : 3.75 min
+      Overall                    : 82.43 %
+ 4. Avg service time             : 2.60 min
+ 5. Avg time between arrivals    : 3.68 min
  6. Avg wait (of those who wait) : 0.00 min
- 7. Avg time in system           : 2.70 min
+ 7. Avg time in system           : 2.60 min
 ─────────────────────────────────────────────────
  Additional:
    Avg queue length              : 0.00
    Max queue length              : 0
-   Server 1 utilisation         : 62.07 %
-   Server 2 utilisation         : 9.55 %
+   Server 1 utilisation         : 61.62 %
+   Server 2 utilisation         : 8.65 %
    Server 3 utilisation         : 0.00 %
    Server 4 utilisation         : 0.00 %
-   Overall utilisation           : 17.90 %
+   Overall utilisation           : 17.57 %
 ─────────────────────────────────────────────────
 
  WAITING TIME HISTOGRAM (4 Servers):
@@ -344,16 +343,16 @@ Detailed tick-by-tick log has been saved to: simulation_log.txt
  -----------------------------------------------------------------------------------------------------------------------------------------------
  Servers                                       2               2               2               2               2               1               4
  Customers                                   100             100             100             100             100             100             100
- 1. Avg wait time (min)                     0.00            0.29            0.00            0.00            0.15            0.39            0.00
- 2. P(wait)                                 0.0%           21.0%            0.0%            0.0%           13.0%           27.0%            0.0%
- 3. P(idle) overall                        66.7%           33.2%           77.3%           75.1%           30.7%           25.3%           82.1%
- 4. Avg service (min)                       2.50            2.63            2.70            1.82            4.92            2.63            2.70
- 5. Avg inter-arrival                       3.71            1.96            5.92            3.63            3.50            3.48            3.75
- 6. Avg wait (waiters)                      0.00            1.38            0.00            0.00            1.15            1.44            0.00
- 7. Avg system time                         2.50            2.92            2.70            1.82            5.07            3.02            2.70
- Avg queue length                           0.00            0.15            0.00            0.00            0.04            0.11            0.00
- Max queue length                              0               3               0               0               2               1               0
- Overall utilisation                       33.3%           66.8%           22.7%           24.9%           69.3%           74.7%           17.9%
+ 1. Avg wait time (min)                     0.00            0.09            0.00            0.00            0.10            0.38            0.00
+ 2. P(wait)                                 0.0%            8.0%            0.0%            0.0%            8.0%           28.0%            0.0%
+ 3. P(idle) overall                        63.2%           42.9%           79.1%           77.3%           35.3%           30.6%           82.4%
+ 4. Avg service (min)                       2.73            2.42            2.48            1.75            4.92            2.50            2.60
+ 5. Avg inter-arrival                       3.68            2.10            5.89            3.84            3.74            3.57            3.68
+ 6. Avg wait (waiters)                      0.00            1.12            0.00            0.00            1.25            1.36            0.00
+ 7. Avg system time                         2.73            2.51            2.48            1.75            5.02            2.88            2.60
+ Avg queue length                           0.00            0.04            0.00            0.00            0.03            0.11            0.00
+ Max queue length                              0               2               0               0               1               2               0
+ Overall utilisation                       36.8%           57.1%           20.9%           22.7%           64.7%           69.4%           17.6%
 
 
 ================================================================
